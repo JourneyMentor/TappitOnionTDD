@@ -63,9 +63,10 @@ namespace User.API.Controllers
 
         // GET api/<UserController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<IActionResult> Get(Guid id)
         {
-            return "value";
+            var user = await _userQueryService.GetByIdAsync<GetUserDto>(id);
+            return Ok(user);
         }
 
         // POST api/<UserController>
